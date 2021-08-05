@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+<head>
+{#    {% load static %}#}
+	<meta charset="utf-8">
+<meta name="author" content="Mermaid Finance">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<!-- Fav Icon  -->
+<link rel="shortcut icon" href="{% static 'web/images/favicon.png'%}">
+<!-- Site Title  -->
+<title>Mermaid Finance</title>
+<!-- Bundle and Base CSS -->
+<link rel="stylesheet" href="{% static 'web/assets/css/vendor.bundle.css'%}?ver=192">
+<link rel="stylesheet" href="{% static 'web/assets/css/style.css'%}?ver=192" id="changeTheme">
+<!-- Extra CSS -->
+<link rel="stylesheet" href="{% static 'web/assets/css/theme.css'%}?ver=192">
+
+<script>
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+
+document.addEventListener('DOMContentLoaded', (event) => {
+	getJSON('https://kishu-api.herokuapp.com/stats',
+	function(err, data) {
+	  if (err !== null) {
+	    console.log('Something went wrong: ' + err);
+	  } else {
+			var kishu_stats = data
+			console.log(kishu_stats)
+			document.getElementById("price").innerHTML = '$' + kishu_stats.kishuPriceUsdt.toFixed(10);
+			document.getElementById("marketcap").innerHTML = '$' + (kishu_stats.kishuPriceUsdt * 100000000000).toFixed(0) + ' Million';
+			document.getElementById("holders").innerHTML = (kishu_stats.holders / 1000).toFixed(0) + ',000+';
+	  }
+	});
+})
+
+</script>
+
+</head>
+
+
+    <body class="nk-body body-wider mode-onepage">
+
+	<div class="nk-wrap">
+		<header class="nk-header page-header is-transparent is-sticky is-shrink" id="header">
+		    <!-- Header @s -->
+			<div class="header-main">
+				<div class="header-container container">
+					<div class="header-wrap">
+						<!-- Logo @s -->
+						<div class="header-logo logo animated" data-animate="fadeInDown" data-delay=".6">
+							<a href="./" class="logo-link">
+								<img class="logo-dark" src="{% static 'web/images/logo.png'%}" srcset="{% static 'web/images/logo2x.png'%} 2x" alt="logo">
+								<img class="logo-light" src="{% static 'web/images/logo.png'%}" srcset="{% static 'web/images/logo2x.png'%} 2x" alt="logo">
+							</a>
+						</div>
+
+						<!-- Menu Toogle @s -->
+						<div class="header-nav-toggle">
+							<a href="#" class="navbar-toggle" data-menu-toggle="header-menu">
+                                <div class="toggle-line">
+                                    <span></span>
+                                </div>
+                            </a>
+						</div>
+
+						<!-- Menu @s -->
+						<div class="header-navbar animated" data-animate="fadeInDown" data-delay=".75">
+							<nav class="header-menu" id="header-menu">
+								<ul class="menu">
+									<li class="menu-item"><a class="menu-link nav-link" href="#header" target="_blank">Home</a></li>
+									<li class="menu-item"><a class="menu-link nav-link" href="https://mermaid.exchange" target="_blank">Swap</a></li>
+									<li class="menu-item"><a class="menu-link nav-link" href="https://mermaid.finance/coming" target="_blank">Shopping</a></li>
+									<li class="menu-item"><a class="menu-link nav-link" href="https://mermaid.finance/coming" target="_blank">Price Chart</a></li>
+									<li class="menu-item"><a class="menu-link nav-link" href="https://mermaid.finance/coming" target="_blank">Audit</a></li>
+									<li class="menu-item has-sub">
+										<a class="menu-link nav-link menu-toggle" href="#">Airdrop</a>
+										<div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+											<div class="menu-mega-innr">
+												<ul class="menu-mega-list">
+													<li class="menu-item"><a class="menu-link nav-link" href="https://form.jotform.com/212163091085449" target="_blank">English</a></li>
+													<li class="menu-item"><a class="menu-link nav-link" href="https://form.jotform.com/212164015498454" target="_blank">Chinese</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li class="menu-item has-sub">
+										<a class="menu-link nav-link menu-toggle" href="#">More</a>
+										<div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+											<div class="menu-mega-innr">
+												<ul class="menu-mega-list">
+													<li class="menu-item"><a class="menu-link nav-link" href="https://etherscan.io/address/0xa2b4c0af19cc16a6cfacce81f192b024d625817d#code" target="_blank">Smart Contract</a></li>
+													<li class="menu-item"><a class="menu-link nav-link" href="https://etherscan.io/tx/0xab041a6b3bfe65b07e016339d91f712c5b0e8fc60ec64b921fb4b18959fc5427" target="_blank">50% LP Burn (Dead Address)</a></li>
+													<li class="menu-item"><a class="menu-link nav-link" href="https://etherscan.io/tx/0x603302e5cae6ec763eb66923d7020454e3901e103e341c4bf3b0b3ef1c372b73" target="_blank">50% LP Burn (Vitalik Buterin)</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul class="menu-btns">
+									<li><a href="https://mermaid.exchange/" target="_blank" class="btn btn-md btn-auto btn-primary no-change"><span>Buy $Mermaid</span></a></li>
+								</ul>
+							</nav>
+						</div><!-- .header-navbar @e -->
+					</div>
+				</div>
+			</div><!-- .header-main @e -->
+
+			<!-- Banner @s -->
+			<div class="header-banner bg-theme-grad">
+				<div class="nk-banner">
+				    <div class="banner banner-fs">
+				        <div class="banner-wrap">
+                            <div class="container">
+                                <div class="row gutter-vr-30px align-items-center justify-content-lg-between justify-content-center">
+                                    <div class="col-lg-5 col-sm-6 col-md-6 col-mb-6 order-lg-last">
+                                        <div class="banner-gfx text-center animated" data-animate="fadeInUp" data-delay="1.4">
+                                            <img src="{% static 'web/images/header/gfx-h.png'%}" alt="header">
+                                        </div>
+                                    </div><!-- .col -->
+                                    <div class="col-lg-7 col-xl-6 col-sm-10 text-center text-lg-left">
+                                        <div class="banner-caption cpn tc-light">
+                                            <div class="cpn-head">
+                                                <h1 class="title title-lg animated" data-animate="fadeInUp" data-delay="1.2">Little meme. <br class="d-none d-md-block">Big dream.</h1>
+                                            </div>
+                                            <div class="cpn-text cpn-text-s3">
+                                                <p class="lead lead-s3 animated" data-animate="fadeInUp" data-delay="1.3">($MERMAID) is a community-focused, decentralized cryptocurrency with oversea shopping & game. Join the moon mission.</p>
+                                            </div>
+                                            <div class="cpn-action">
+                                                <div class="cpn-btns animated" data-animate="fadeInUp" data-delay="1.4">
+                                                    <ul class="btn-grp">
+																											<li><a href="https://mermaid.exchange/" target="_blank" class="btn btn-primary btn-md">Buy $Mermaid</a></li>
+                                                        <li>
+                                                            <ul class="btn-grp btn-grp-after gutter-30px">
+                                                                <li><a href="https://t.me/mermaid_finance" target="_blank"><em class="fab fa-telegram-plane"></em></a></li>
+																																<li><a href="https://www.reddit.com/r/MermaidCommunity/" target="_blank"><em class="fab fa-reddit-alien"></em></a></li>
+																																<li><a href="https://twitter.com/mermaid_finance" target="_blank"><em class="fab fa-twitter"></em></a></li>
+																																<!--<li><a href="#"><em class="fab fa-facebook-f"></em></a></li>-->
+																																<li><a href="https://www.youtube.com/results?search_query=mermaid+finance" target="_blank"><em class="fab fa-youtube"></em></a></li>
+																																<li><a href="https://medium.com/@mermaidtoken" target="_blank"><em class="fab fa-medium-m"></em></a></li>
+																																<li><a href="https://github.com/MermaidFinance" target="_blank"><em class="fab fa-github"></em></a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- .col -->
+                                </div><!-- .row -->
+                            </div>
+                        </div>
+				    </div>
+				</div><!-- .nk-banner -->
+				<div class="nk-ovm mask-e mask-contain-bottom shape-z"></div>
+			</div>
+			<!-- .header-banner @e -->
+		</header>
+
+        <main class="nk-pages">
+            <section class="section bg-white section-t-m">
+                <div class="container">
+                    <div class="section-head text-center wide-sm animated" data-animate="fadeInUp" data-delay=".1">
+                        <h2 class="title">🐠 What is Mermaid? 🐠</h2>
+                    </div>
+                    <!-- Block @s -->
+                    <div class="nk-block nk-block-features">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-4">
+                                <div class="feature feature-s8 feature-center card card-full card-md animated" data-animate="fadeInUp" data-delay=".2">
+                                    <div class="feature-icon feature-icon-xl">
+                                        <img src="{% static 'web/images/icons/icon-h-nobg.png'%}" alt="feature">
+                                    </div>
+                                    <div class="feature-text feature-text-s8">
+                                        <h4 class="title title-md mb-1 title-thin title-s7">Community Powered</h4>
+                                        <p class=" mgb-s">MERMAID is fully decentralized and owned by its fun, vibrant community. We welcome and embrace diverse perspectives to build MERMAID into the best community in crypto.</p>
+                                    </div>
+                                </div>
+                            </div><!-- .col -->
+                            <div class="col-lg-4 col-md-4">
+                                <div class="feature feature-s8 feature-center card card-full card-md animated" data-animate="fadeInUp" data-delay=".3">
+                                    <div class="feature-icon feature-icon-xl">
+                                        <img src="{% static 'web/images/icons/icon-i-nobg.png'%}" alt="feature">
+                                    </div>
+                                    <div class="feature-text feature-text-s8">
+                                        <h4 class="title title-md mb-1 title-thin title-s7">Instant Rewards</h4>
+                                        <p class=" mgb-s">For every transaction in MERMAID's network (buy or sell), 2% of the transaction is distributed to existing holders. That means you earn $MERMAID just by holding it in your wallet.</p>
+                                   </div>
+                                </div>
+                            </div><!-- .col -->
+                            <div class="col-lg-4 col-md-4">
+                                <div class="feature feature-s8 feature-center card card-full card-md animated" data-animate="fadeInUp" data-delay=".4">
+                                    <div class="feature-icon feature-icon-xl">
+                                        <img src="{% static 'web/images/icons/icon-j-nobg.png'%}" alt="feature">
+                                    </div>
+                                    <div class="feature-text feature-text-s8">
+                                        <h4 class="title title-md mb-1 title-thin title-s7">Secure & Safe</h4>
+                                        <p class=" mgb-s">MERMAID has been <a href="https://kishu.finance/audit" target="_blank"><b>audited</b></a> and its LP (Liquidity Pool) tokens have been burnt. That means zero risk to our investors from potential bad actors.</p>
+                                    </div>
+                                </div>
+                            </div><!-- .col -->
+                        </div><!-- .row -->
+                    </div><!-- .block @e -->
+                </div>
+            </section>
+            <!-- // -->
+            <section class="section bg-white">
+                <div class="container">
+                    <!-- Block @s -->
+                    <div class="nk-block nk-block-text-wrap">
+                        <div class="row align-items-center gutter-vr-30px justify-content-center justify-content-lg-between">
+                            <div class="col-lg-5 order-lg-last">
+                                <div class="gfx gfx-auto gfx-md animated" data-animate="fadeInUp" data-delay=".1">
+                                    <img src="{% static 'web/images/gfx/gfx-z-d.png'%}" alt="app">
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-mb-9">
+                                <div class="nk-block-text">
+                                    <div class="pb-5 animated" data-animate="fadeInUp" data-delay=".2">
+                                        <h2 class="title">How to Buy $MERMAID 💸</h2>
+                                        <p class="lead lead-regular lead-s2">Follow these steps or join our <b><a href="https://t.me/mermaid_finance" target="_blank">Telegram</a></b> group if you need help</p>
+                                    </div>
+                                    <ul class="list list-number-s2">
+                                        <li class="animated" data-animate="fadeInUp" data-delay=".3">
+                                            <span>1</span>
+                                            <h4 class="title title-md text-base">Create a MetaMask Wallet</h4>
+                                            <p>$MERMAID token is available on the Ethereum blockchain. MetaMask is the market leader in ERC20 (Ethereum) wallets. On Google Chrome, visit <b><a href="https://metamask.io" target="_blank">metamask.io</a></b> to download the extension and set up a wallet. On mobile? Get MetaMask's app for <b><a href="https://metamask.app.link/skAH3BaF99" target="_blank">iPhone</a></b> or <b><a href="https://metamask.app.link/bxwkE8oF99" target="_blank">Android</a></b>.</p>
+                                        </li>
+                                        <li class="animated" data-animate="fadeInUp" data-delay=".4">
+                                            <span>2</span>
+                                            <h4 class="title title-md text-base">Send $ETH to MetaMask</h4>
+                                            <p>Buy Ethereum through MetaMask or transfer it to your MetaMask wallet address from another wallet (e.g. Coinbase or Binance).</p>
+                                        </li>
+                                        <li class="animated" data-animate="fadeInUp" data-delay=".5">
+                                            <span>3</span>
+                                            <h4 class="title title-md text-base">Visit MERMAID Swap</h4>
+                                            <p>You can currently buy $MERMAID on <b><a href="https://mermaid.exchange/" target="_blank">MERMAID Swap</a></b>, KISHU's official decentralized exchange where you can swap any ERC20 token.</p>
+                                        </li>
+																				<li class="animated" data-animate="fadeInUp" data-delay=".6">
+                                            <span>4</span>
+                                            <h4 class="title title-md text-base">Swap $ETH for $KISHU</h4>
+                                            <p>Enter the amount of $ETH you would like to swap for $KISHU. Click <b>Connect Wallet</b> then <b>Swap</b></p>
+                                        </li>
+                                   </ul>
+                                </div>
+                            </div>
+                        </div><!-- .row -->
+                    </div><!-- .block @e -->
+                </div>
+            </section>
+            <!-- // -->
+						<section class="section bg-theme tc-light has-bg-image">
+							<div class="container">
+								<div class="section-head section-head-s7 text-center wide-auto-sm">
+									<h2 class="title title-thin">Tokenomics & Stats</h2>
+								</div>
+								<!-- .section-head @e -->
+								<div class="nk-block">
+									<div class="token-box-top">
+										<div class="row gutter-vr-30px">
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">$MMD</span>
+													<span class="token-sale-title">TOKEN SYMBOL</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">100 Quadrillion</span>
+													<span class="token-sale-title">TOTAL SUPPLY</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">50%</span>
+													<span class="token-sale-title">INITIAL BURN</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">5%</span>
+													<span class="token-sale-title">AUTO-REWARD</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">4%</span>
+													<span class="token-sale-title">AUTO-BURN</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info">3%</span>
+													<span class="token-sale-title">AUTO-LIQUIDITY</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info" id="price">
+														Loading...
+													</span>
+													<span class="token-sale-title">CURRENT PRICE</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info" id="marketcap">
+														Loading...
+													</span>
+													<span class="token-sale-title">MARKET CAP</span>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-6">
+												<div class="token-sale-box">
+													<span class="token-sale-info" id="holders">
+														Loading...
+													</span>
+													<span class="token-sale-title">HOLDERS</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bg-image overlay overlay-theme overlay-opacity-90 bg-image-loaded" data-overlay="theme" data-opacity="90" style="background-image: url({% static 'web/images/bg/bg-a.jpg'%});">
+								<img src="{% static 'web/images/bg/bg-a.jpg'%}" alt="background">
+							</div>
+						</section>
+						<!-- // -->
+						<section class="section bg-white">
+							<div class="container">
+								<!-- Block @s -->
+								<div class="nk-block nk-block-text-wrap">
+									<div class="row align-items-center">
+										<div class="col-lg-7 order-lg-last">
+											<div class="nk-block-img edge-r1 pb-4 pb-lg-0">
+												<a href="https://mermaid.exchange/" target="_blank"><img src="{% static 'web/images/kishu-swap.png'%}" alt="app"></a>
+											</div></div><div class="col-lg-5">
+												<div class="nk-block-text">
+													<h6 class="title title-xs tc-primary">Decentralized Exchange</h6>
+													<h2 class="title">MERMAID Swap 📈</h2>
+													<p>MERMAID Swap is our official decentralized exchange (DEX). It gives investors the ability to swap any ERC20 token for another one.</p>
+													<p>It is powered by Uniswap, the safest and most trusted DEX in the world. Furthermore, it acts as the foundation from which we will build additional features and functionality exclusive to MERMAID holders.</p>
+													<div class="pdt-m">
+														<a href="https://mermaid.exchange/" target="_blank" class="btn btn-primary">VISIT MERMAID SWAP</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- .row -->
+									</div>
+									<!-- .block @e -->
+								</div>
+							</section>
+						<!-- // -->
+						<section class="section bg-white">
+							<div class="container">
+								<!-- Block @s -->
+								<div class="nk-block nk-block-text-wrap">
+									<div class="row align-items-center justify-content-center flex-row-reverse">
+										<div class="col-lg-7 mb-4 mb-lg-0">
+										<div class="nk-block-text">
+											<h2 class="title">Read the Whitepaper 🤓</h2>
+											<p>Take a deeper dive into MERMAID by reading our whitepaper. It is updated regularly with key information about the project!</p>
+											<div class="pdt-m">
+												<a href="/static/web/MermaidWhitePaper.pdf" target="_blank" class="btn btn-primary">Read the Whitepaper</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-5 col-md-10 text-center text-lg-left">
+											<div class="nk-block-img">
+												<a href="/static/web/MermaidWhitePaper.pdf" target="_blank"><img src="{% static 'web/images/whitepaper.png'%}" alt="whitepaper"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- .block @e -->
+							</div>
+						</section>
+            <!-- // -->
+						<section class="section bg-light">
+							<div class="container">
+								<div class="section-head section-head-s4 wide-auto-sm text-center">
+									<h2 class="title title-s3">🌜 Moonmap 🌛</h2>
+									<p>MERMAID launched on April 17, 2021 and quickly became one of the fastest growing cryptocurrencies of 2021. This Moonmap is a breathing document that lays out key milestones we plan to hit to continue our rapid growth.</p>
+								</div>
+								<div class="row">
+									<div class="col-lg-4 mb-4">
+										<h3 class="title title-md">Phase 1 - Launch</h3>
+										<ul class="list list-check">
+											<li>1,000 Holders</li>
+											<li>Website Launch</li>
+											<li>CoinGecko Listing</li>
+											<li>2,000 Telegram Members</li>
+											<li>Community Marketing Fund</li>
+											<li>Marketing Campaign</li>
+											<li>CoinMarketCap Listing</li>
+											<li>5,000 Holders</li>
+										</ul>
+									</div>
+									<div class="col-lg-4 mb-4">
+										<h3 class="title title-md">Phase 2 - Growth</h3>
+										<ul class="list list-check">
+											<li>5,000 Telegram Members</li>
+											<li>Website Redesign</li>
+											<li>10,000 Holders</li>
+											<li>10,000 Telegram Members</li>
+											<li>20,000 Holders</li>
+										</ul>
+									</div>
+									<div class="col-lg-4 mb-4">
+										<h3 class="title title-md">Phase 3 - Expansion</h3>
+										<ul class="list list-check">
+											<li>MERMAID Swap (Decentralize Exchange)</li>
+											<li>Initial CEX Listings (Hotbit, Bilaxy, CoinTiger)</li>
+											<li>15,000 Telegram Members</li>
+											<li>30,000 Holders</li>
+										</ul>
+									</div>
+									<div class="col-lg-4 mb-4">
+									</div>
+									<div class="col-lg-4 mb-4">
+										<h3 class="title title-md">Phase 4 - Utility</h3>
+										<ul class="list list-dot">
+											<li>MERMAID Crate (NFT Marketplace)</li>
+											<li>MERMAID Paw Print (Wallet and Passive Income Tracker)</li>
+											<li>MERMAID sWag (Merchandise Store)</li>
+											<li>3 More CEX Listings</li>
+											<li>50,000 Telegram Members</li>
+											<li>100,000 Holders</li>
+											<li>Influencer Marketing Partnerships</li>
+										</ul>
+									</div>
+									<div class="col-lg-4 mb-4">
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- // -->
+						<section class="section bg-light">
+							<div class="container">
+
+								<!-- Block @s -->
+								<div class="nk-block nk-block-team-list team-list">
+									<div class="section-head section-head-s4 wide-auto-sm text-center">
+										<h2 class="title title-s3">🙆‍♂️ Founding Team 🙆‍♂️</h2>
+										<p>MERMAID was founded by a 2-person team that has since expanded into 20+ community managers with expertise in marketing and product development. Feel free to say "Hi!" 👋 on Telegram.</p>
+									</div>
+									<div class="row justify-content-center">
+										<div class="col-md-6 col-lg-3">
+											<div class="team team-s3">
+												<div class="team-photo round-full team-photo-bg">
+													<img src="{% static 'web/images/team/sq-a.jpg'%}" alt="team" class="round-full">
+												</div>
+												<h5 class="team-name title title-sm">MERMAID Man</h5>
+												<span class="team-position">Co-Founder | Head of Operations</span>
+												<ul class="team-social team-social-s2">
+													<li>
+														<a href="https://t.me/Kishu_Inu" target="_blank"><em class="fab fa-telegram-plane"></em></a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<!-- .col -->
+										<div class="col-md-6 col-lg-3">
+											<div class="team team-s3">
+												<div class="team-photo round-full team-photo-bg">
+													<img src="{% static 'web/images/team/sq-b.jpg'%}" alt="team" class="round-full">
+												</div>
+												<h5 class="team-name title title-sm">Inu Dev</h5>
+												<span class="team-position">Co-Founder | Lead Developer</span>
+												<ul class="team-social team-social-s2">
+													<li>
+														<a href="https://t.me/InuDev" target="_blank"><em class="fab fa-telegram-plane"></em></a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<!-- .col -->
+									</div>
+									<!-- .row -->
+								</div>
+							</div>
+						</section>
+        </main>
+
+		<footer class="nk-footer bg-theme-grad ov-h">
+            <section class="section bg-transparent no-pdy">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="nk-block boxed boxed-xl bg-white round-lg">
+                                <div class="row align-items-center gutter-vr-30px justify-content-between">
+                                    <div class="col-md-6 col-mb-8 order-last order-md-first m-auto">
+                                        <div class="nk-block-img text-center animated" data-animate="fadeInUp" data-delay=".1">
+                                            <a href="https://etherscan.io/address/0xb7852d285f31b740318cab51bd0e5e7936073725" target="_blank"><img src="{% static 'web/images/donate.png'%}" alt="donate"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="nk-block-text pb-md-5 text-md-left text-center">
+																					<h2 class="title">Donate to MERMAID 🙏</h2>
+																					<p>As a community-powered project, MERMAID runs thanks to its amazing volunteers and generous donors. If you would like to pitch in, use the official ERC20 donation wallet here:</p>
+																					<p><b>0xB7852D285f31B740318CAb51Bd0E5E7936073725</b></p>
+																					<p><a><i>Accepted: Any ERC20 token</i></a></p>
+																					<p><a><i>Preferred: $ETH, $USDC, $KISHU</i></a></p>
+																					<a class="btn btn-primary animated" data-animate="fadeInUp" data-delay=".4" href="https://etherscan.io/address/0xb7852d285f31b740318cab51bd0e5e7936073725" target="_blank">View on Etherscan</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-ovm ovm-top ovm-h-50 bg-light"></div>
+            </section>
+			<section class="section section-m section-footer tc-light bg-transparent">
+				<div class="container">
+					<!-- Block @s -->
+					<div class="nk-block block-footer">
+						<div class="row">
+							<div class="col">
+								<div class="wgs wgs-text text-center mb-3">
+									<ul class="social pdb-l justify-content-center">
+										<li>
+											<a href="https://t.me/mermaid_finance" target="_blank">
+												<em class="social-icon fab fa-telegram-plane"></em>
+											</a>
+										</li>
+										<li>
+											<a href="https://www.reddit.com/r/KishuInu/" target="_blank">
+												<em class="social-icon fab fa-reddit-alien"></em>
+											</a>
+										</li>
+										<li>
+											<a href="https://twitter.com/mermaid_finance" target="_blank">
+												<em class="social-icon fab fa-twitter"></em>
+											</a>
+										</li>
+										<li>
+											<a href="https://www.instagram.com/inukishu" target="_blank">
+												<em class="social-icon fab fa-instagram"></em>
+											</a>
+										</li>
+										<!--<li>
+											<a href="#">
+												<em class="social-icon fab fa-facebook-f"></em>
+											</a>
+										</li>-->
+										<li>
+											<a href="https://www.youtube.com/results?search_query=mermaid+finance" target="_blank">
+												<em class="social-icon fab fa-youtube"></em>
+											</a>
+										</li>
+										<li>
+											<a href="https://medium.com/@kishuinu" target="_blank">
+												<em class="social-icon fab fa-medium-m"></em>
+											</a>
+										</li>
+										<li>
+											<a href="https://github.com/Kishu-Inu/Kishu-Inu-Contracts" target="_blank">
+												<em class="social-icon fab fa-github"></em>
+											</a>
+										</li>
+									</ul>
+									<a href="./" class="footer-logo">
+										<img src="{% static 'web/images/logo.png'%}" srcset="{% static 'web/images/logo2x.png'%} 2x" alt="logo">
+									</a>
+									<div class="copyright-text copyright-text-s3 pdt-m">
+										<p>
+											<span class="d-sm-block">Copyright © 2021, MERMAID</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- .block @e -->
+				</div>
+			</section>
+		</footer>
+	</div>
+
+	<div class="preloader"><span class="spinner spinner-round"></span></div>
+
+	<!-- JavaScript -->
+	<script src="{% static 'web/assets/js/jquery.bundle.js'%}?ver=192"></script>
+	<script src="{% static 'web/assets/js/scripts.js'%}?ver=192"></script>
+	<script src="{% static 'web/assets/js/charts.js'%}"></script>
+</body>
+
+</html>
